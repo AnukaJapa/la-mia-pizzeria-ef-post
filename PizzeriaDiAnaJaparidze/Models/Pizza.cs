@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PizzeriaDiAnaJaparidze.Validations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PizzeriaDiAnaJaparidze.Models
@@ -16,7 +17,7 @@ namespace PizzeriaDiAnaJaparidze.Models
         public string Title { get; set; }
 
         [Url(ErrorMessage ="non hai inserito il link")]
-
+        [Image]
         public string Image { get; set; }
         
 
