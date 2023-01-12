@@ -17,6 +17,22 @@ namespace PizzeriaDiAnaJaparidze.Controllers
                 return View("Index", pizzaList);
             }
         }
+
+        public IActionResult Details(int id)
+        {
+           using (PizzeriaContext db = new PizzeriaContext()){
+                Pizza pizzaRichiesta = db.Pizzas.Where(p => p.Id == id).FirstOrDefault();
+                if (pizzaRichiesta != null)
+                {
+                    return View(pizzaRichiesta);
+                }
+
+                return NotFound("la pizza con l'id cercato non esiste!");
+            }
+
+        }
+      
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -43,6 +59,7 @@ namespace PizzeriaDiAnaJaparidze.Controllers
 
             }
         }
+
 
 
         [HttpGet]
@@ -90,6 +107,27 @@ namespace PizzeriaDiAnaJaparidze.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            using (PizzeriaContext db = new PizzeriaContext())
+            {
+                Pizza pizzaToDelete = db.Pizzas.Where(p => p.Id == id).FirstOrDefault();
+
+                if (pizzaToDelete != null)
+                {
+                    db.Pizzas.Remove(pizzaToDelete);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return NotFound("Il post da eliminare non è stato trovato!");
+                }
+            }
+        }
 
     }
 }
