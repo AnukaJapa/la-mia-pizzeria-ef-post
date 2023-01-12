@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = "_BaseLayout";
+}
+@model List<Pizza>
+
+<div class="container">
+
+    @*inizio delle cards------------------------------------*@
+    <a class="btn btn-primary"
+       href="@Url.Action("Create", "Pizza")">
+        Aggiungi Nuovo Articolo
+    </a>
+
+    <div class="p-5 row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach(Pizza elemento in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img style="aspect-ratio:4/3" src="@elemento.Image" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">@elemento.Title</h5>
+                        <p class="card-text">@elemento.Description</p>
+                        <button>Details</button> <button>Modify</button> <button>Delete</button>
+                    </div>
+
+                </div>
+            </div>
+        } 
+       
+    </div>
+
+    @*inizio delle cards------------------------------------*@
+</div>
+

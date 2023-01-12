@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = "_BaseLayout";
+}
+
+@model Pizza
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-6">
+            <form asp-controller="Pizza" asp-action="Create" method="post">
+                @Html.AntiForgeryToken() <!-- per sicurezza dei dati-->
+                <div class="mb-3">
+                    <label>Titolo:</label>
+                    <input asp-for="Title" type="text" class="form-control">
+                    <span asp-validation-for = "Title"  class="text-danger"></span>
+
+                </div>
+                <div class="mb-3">
+                    <label>Descrizione:</label>
+                    <textarea asp-for="Description" rows="10" class="d-block w-100"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                </div>
+                <div class="mb-3">
+                    <label>Path Image:</label>
+                    <input asp-for="Image" type="text" class="form-control">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+
+                </div>
+
+                <div class="text-end">
+                    <input type="submit" class="btn btn-small btn-info" value="Salva">
+                </div>
+            </form>
+    </div>
+</divc>    
+</div>
+    
